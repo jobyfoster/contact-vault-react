@@ -1,0 +1,29 @@
+.navbar {
+  width: 100%;
+  padding: 1em 2em;
+  background-color: rgb(28, 28, 28);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.new-card-button {
+  background-color: var(--primary);
+  color: var(--text);
+  border: none;
+  border-radius: 5px;
+  margin-left: auto;
+
+  width: 60px;
+  height: 60px;
+}
+
+.new-card-button:hover {
+  cursor: pointer;
+  background-color: #2e379d;
+}
+
+.upload-icon {
+  width: 2.5rem;
+  margin: 0;
+  padding: 0;
+}

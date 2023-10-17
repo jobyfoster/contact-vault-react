@@ -1,10 +1,10 @@
 import './App.css';
 import uploadIcon from './img/upload.png';
 import { useEffect, useState } from "react";
-import Cards from './Cards';
+import Contacts from './Contacts';
 
 function App() {
-  const [cards, setCards] = useState([]);
+  const [contacts, setContacts] = useState([]);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [email, setEmail] = useState("");
@@ -17,18 +17,18 @@ function App() {
   const [editIndex, setEditIndex] = useState(null);
 
   useEffect(() => {
-    const storedCards = localStorage.getItem("businessCards");
+    const storedCards = localStorage.getItem("contacts");
     if (storedCards) {
-      setCards(JSON.parse(storedCards));
+      setContacts(JSON.parse(storedCards));
     }
   }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const newCard = { name, description, email, phone };
-    const updatedCards = [...cards, newCard];
-    setCards(updatedCards);
-    localStorage.setItem("businessCards", JSON.stringify(updatedCards));
+    const updatesContacts = [...contacts, newCard];
+    setContacts(updatesContacts);
+    localStorage.setItem("contacts", JSON.stringify(updatesContacts));
 
     setName("");
     setDescription("");
@@ -37,8 +37,8 @@ function App() {
   };
 
   const handleEdit = (indexToEdit) => {
-    const updatedCards = [...cards];
-    const originalCard = {...updatedCards[indexToEdit]};
+    const updatedContacts = [...contacts];
+    const originalCard = {...updatedContacts[indexToEdit]};
   
     const newCard = {
       name: editedName ? editedName : originalCard.name,
@@ -47,10 +47,10 @@ function App() {
       phone: editedPhone ? editedPhone : originalCard.phone
     };
   
-    updatedCards[indexToEdit] = newCard;
+    updatedContacts[indexToEdit] = newCard;
     
-    setCards(updatedCards);
-    localStorage.setItem("businessCards", JSON.stringify(updatedCards));
+    setContacts(updatedContacts);
+    localStorage.setItem("contacts", JSON.stringify(updatedContacts));
   
     setEditedName("");
     setEditedDescription("");
@@ -60,10 +60,10 @@ function App() {
   };
   
 
-  const deleteCard = (indexToDelete) => {
-    const updatedCards = cards.filter((_, index) => index !== indexToDelete);
-    setCards(updatedCards);
-    localStorage.setItem("businessCards", JSON.stringify(updatedCards));
+  const deleteContact = (indexToDelete) => {
+    const updatedCards = contacts.filter((_, index) => index !== indexToDelete);
+    setContacts(updatedCards);
+    localStorage.setItem("contacts", JSON.stringify(updatedCards));
   };
 
   return (
@@ -110,18 +110,18 @@ function App() {
         <button type="submit" className='new-card-button'><img  className='upload-icon' src={uploadIcon} alt="upload icon" /></button>
       </form>
       <div className="cards-area">
-        <h3>({cards.length}) Business Cards</h3>
+        <h3>({contacts.length}) Business Cards</h3>
         <div className='cards'>
-          <Cards                                        //likely could have done this better
-          cards={cards}                                 //but screw it lol
-          setEditedName={setEditedName}
-          setEditedDescription={setEditedDescription}
-          setEditedEmail={setEditedEmail}
-          setEditedPhone={setEditedPhone}
-          removeCard={deleteCard}
-          handleEdit={handleEdit}
-          editIndex={editIndex}
-          setEditIndex={setEditIndex}
+          <Contacts                                             //likely could have done this better
+            contacts={contacts}                                 //but screw it lol
+            setEditedName={setEditedName}
+            setEditedDescription={setEditedDescription}
+            setEditedEmail={setEditedEmail}
+            setEditedPhone={setEditedPhone}
+            removeContact={deleteContact}
+            handleEdit={handleEdit}
+            editIndex={editIndex}
+            setEditIndex={setEditIndex}
           />
         </div>
       </div>

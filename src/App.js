@@ -16,6 +16,8 @@ function App() {
   const [editedPhone, setEditedPhone] = useState("");
   const [editIndex, setEditIndex] = useState(null);
 
+  const [searchTerm, setSearchTerm] = useState("");
+
   useEffect(() => {
     const storedCards = localStorage.getItem("contacts");
     if (storedCards) {
@@ -69,6 +71,7 @@ function App() {
   return (
     <>
       <form className='navbar' onSubmit={handleSubmit}>
+
         <input
           className='new-card-input'
           type="text"
@@ -85,7 +88,7 @@ function App() {
           placeholder="Description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          maxLength={40}
+          maxLength={64}
           size={30}
           required
         />
@@ -110,7 +113,16 @@ function App() {
         <button type="submit" className='new-card-button'><img  className='upload-icon' src={uploadIcon} alt="upload icon" /></button>
       </form>
       <div className="cards-area">
-        <h3>({contacts.length}) Business Cards</h3>
+        <div className="header-area">
+          <h3>({contacts.length}) Contacts found</h3>
+          <input
+            type="text"
+            className="search-input"
+            placeholder="Search" 
+            value={searchTerm} 
+            onChange={(e) => setSearchTerm(e.target.value)} 
+          />
+        </div>
         <div className='cards'>
           <Contacts                                             //likely could have done this better
             contacts={contacts}                                 //but screw it lol
@@ -122,6 +134,7 @@ function App() {
             handleEdit={handleEdit}
             editIndex={editIndex}
             setEditIndex={setEditIndex}
+            searchTerm={searchTerm}
           />
         </div>
       </div>

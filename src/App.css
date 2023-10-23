@@ -62,21 +62,22 @@ small {
 .navbar {
   width: 100%;
   padding: 1em;
-  background-color: rgb(28, 28, 28);
+  background-color: #1c1c1c;
   display: flex;
   justify-content: flex-end;
 }
 
 .new-card-input {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   margin-left: 3em;
-  padding: 10px;
+  padding: 10px 20px;
   color: var(--text);
 
   background-color: #111111;
   border: 0px solid #000000;
   border-radius: 5px;
-  outline: none;
+  outline: 1px solid #191919;
+  transition: all 0.2s ease-in-out;
 }
 
 .new-card-input:focus {
@@ -87,11 +88,14 @@ small {
   background-color: var(--primary);
   color: var(--text);
   border: none;
+  padding: 0;
   border-radius: 5px;
   margin-left: auto;
 
   width: 60px;
   height: 60px;
+
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .new-card-button:hover {
@@ -109,48 +113,73 @@ small {
   padding: 2em 5em;
 }
 
-.cards {
+.header-area {
   display: flex;
-  flex-flow: row wrap;
-
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
-  gap: 1em;
 }
 
-.business-card {
-  position: relative;
-  flex: 1;
-  min-width: 20em;
-  max-width: 25em;
-  border-radius: 10px;
-  border: 2px solid #242424;
+.search-input {
+  font-size: 1.3rem;
+  /* margin-left: 3em; */
+  padding: 12px;
+  color: var(--text);
 
-  padding: 2em 3em;
+  background-color: #202020;
+  border: 0px solid #000000;
+  border-radius: 5px;
+  outline: 1px solid #1d1d1d;
+  transition: all 0.2s ease-in-out;
+}
+
+.search-input:focus {
+  outline: 2px solid var(--primary);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 20px;
+
+  padding-top: 20px;
+
+  transition: all 0.5s ease-in;
+}
+
+.contact-card {
+  position: relative;
+  border-radius: 10px;
+  border: 2px solid #1d1d1d;
+
+  padding: 30px 50px;
   background-color: #202020;
   overflow: hidden;
   transition: all 0.3s ease;
+}
+
+.edit-and-delete-btns {
+  opacity: 0;
+  transition: opacity 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.contact-card:hover .edit-and-delete-btns {
+  opacity: 1;
 }
 
 .delete-icon {
   position: absolute;
   bottom: 20px;
   right: 20px;
-  visibility: hidden;
   font-size: 24px;
   cursor: pointer;
-  background-color: rgba(255, 0, 0, 0.6); /* semi-transparent red background */
-  color: #fff; /* white color for the icon */
-  border-radius: 50%; /* round shape */
+  background-color: rgba(230, 0, 0, 0.6);
+  color: #fff;
+  border-radius: 50%;
   width: 40px;
   height: 40px;
   padding: 5px;
   line-height: 30px;
   text-align: center;
-}
-
-.business-card:hover .delete-icon {
-  visibility: visible;
 }
 
 .delete-icon:hover {
@@ -162,7 +191,6 @@ small {
   position: absolute;
   bottom: 23px;
   right: 70px;
-  visibility: hidden;
 
   font-size: 1.2rem;
   color: var(--text);
@@ -171,10 +199,6 @@ small {
   border: none;
   border-radius: 2px;
   padding: 5px 10px;
-}
-
-.business-card:hover .edit-button {
-  visibility: visible;
 }
 
 .edit-button:hover {
@@ -189,7 +213,7 @@ small {
 }
 
 .card-description {
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .card-email {
@@ -234,4 +258,68 @@ small {
   outline: 2px solid #4653e5;
 
   cursor: pointer;
+}
+
+@media screen and (max-width: 1765px) {
+  .cards {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 1600px) {
+  .new-card-input {
+    margin-left: 1em;
+  }
+}
+
+@media screen and (max-width: 1670px) {
+  .navbar {
+    flex-direction: column;
+    padding-left: 3em;
+    padding-right: 3em;
+  }
+
+  .new-card-input {
+    padding: 15px;
+    font-size: 1.3rem;
+    margin: 0.5em 0;
+  }
+
+  .new-card-button {
+    margin: 1em auto;
+    width: 250px;
+    height: 65px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 1270px) {
+  .cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 860px) {
+  .header-area {
+    flex-direction: column;
+  }
+
+  .search-input {
+    margin-bottom: 1em;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+    padding: 20px 5em;
+  }
+
+  .contact-card {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 550px) {
 }
